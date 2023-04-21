@@ -60,6 +60,7 @@ const userEntrysData = [
   max-height: 245px;
   background-color: orchid;
   display: block;
+  height: 9vw
 }
 
 .banner {

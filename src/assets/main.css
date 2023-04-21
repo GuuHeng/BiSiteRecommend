@@ -8,6 +8,7 @@
   font-weight: normal;
 
   min-width: 1200px;
+  max-width: 2560px;
   background-color: white;
 }
 
@@ -22,6 +23,10 @@ a {
 div {
   padding: 0;
   margin: 0;
+}
+
+body {
+  margin: 0 atuo;
 }
 
 @media (min-width: 1024px) {

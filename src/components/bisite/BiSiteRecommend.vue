@@ -8,7 +8,21 @@
                     :key="index">
                     <img class="recommend_banner_swiper_slide_img" :src="item.img" alt="" referrerpolicy="no-referrer">
                 </SwiperSlide>
+
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-scrollbar"></div>
             </swiper>
+            <!-- <swiper class="recommend_banner_swiper" :="banner_swiper">
+                <SwiperSlide :zoom="true" class="recommend_banner_swiper_slide" v-for="( item, index ) in  feed_banners "
+                    :key="index">
+                    <img class="recommend_banner_swiper_slide_img" :src="item.img" alt="" referrerpolicy="no-referrer">
+                </SwiperSlide>
+                <div class="recommend_banner_pagination">
+
+                </div>
+            </swiper> -->
             <div class="recommend_banner_footer">
                 <div class="recommend_banner_title">
                 </div>
@@ -20,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="recommend_card" v-for="(item, index) in feed_recommend_cards" :key="index">
+        <div class="recommend_card" v-for="( item, index ) in  feed_recommend_cards " :key="index">
             <div class="card_img">
                 <a href="https://www.baidu.com">
                     <img :src="item.img" alt="" class="card_video_bgimg" referrerpolicy="no-referrer">
@@ -50,12 +64,37 @@
     </div>
 </template>
 
-
 <script setup>
 import IconZhuanlan from '../icons/IconZhuanlan.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay, Pagination, Navigation, Scrollbar } from 'swiper'
 import 'swiper/css';
+
+
+const swiper_modules = [Autoplay, Pagination, Navigation, Scrollbar]
+
+//TypeError: Class constructor Swiper cannot be invoked without 'new'
+// eslint-disable-next-line no-unused-vars
+// const banner_swiper = new Swiper('.swiper', {
+//     // Install modules
+//     modules: [Autoplay, Pagination, Navigation, Scrollbar],
+//     speed: 500,
+//     loop: true,
+//     pagination: {
+//         clickable: true
+//     },
+//     navigation: {
+//         nextEl: '.swiper-button-next',
+//         prevEl: '.swiper-button-prev',
+//     },
+//     autoplay: {
+//         delay: 3000
+//     },
+//     disableOnInteraction: false,
+//     spaceBetween: 50,
+//     slidesPerView: 1
+
+// });
 
 // 推荐banner
 const feed_banners = [
@@ -69,9 +108,14 @@ const feed_banners = [
     }
 ]
 
-// swiper
-const swiper_modules = [Autoplay, Pagination, Navigation, Scrollbar]
-const navigation = {}
+// function prevEl() {
+
+// }
+
+// function clickBanner(item, index) {
+
+// }
+
 
 // 推荐内容卡片
 const feed_recommend_cards = []
@@ -88,7 +132,7 @@ for (let index = 0; index < 100; index++) {
         isFocus: true
     }
 
-    if (index == Math.random * 100) {
+    if (index % 2 == 0) {
         element.isFocus = false
     }
     feed_recommend_cards.push(element)
