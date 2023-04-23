@@ -113,6 +113,12 @@ function handleMouseOver(event, item) {
   justify-content: space-between;
 }
 
+@media (max-width: 1549.9px) {
+  .header_channels {
+    width: 1180px;
+  }
+}
+
 @media (min-width: 1550px) {
   .header_channels {
     padding: 0 140px;
@@ -173,6 +179,16 @@ function handleMouseOver(event, item) {
   line-height: 30px;
   height: 30px;
   border-radius: 4px;
+}
+
+@media (max-width: 1559.9px) {
+  .header_channels_centerArea {
+    grid-template-columns: repeat(11, 1fr);
+  }
+
+  .header_channels_centerArea_item {
+    font-size: 13px;
+  }
 }
 
 .header_channels_centerArea_item:hover {

@@ -1,20 +1,21 @@
 <template>
     <div class="feed">
         <div class="recommend_banner">
-            <swiper class="recommend_banner_swiper" :modules=swiper_modules :pagination="{ clickable: true }"
-                :autoplay="{ delay: 3000, disableOnInteraction: false }" :loop="true" :spaceBetween="50"
-                :navigation="navigation" :slidesPerView="1">
-                <SwiperSlide :zoom="true" class="recommend_banner_swiper_slide" v-for="(item, index) in feed_banners"
-                    :key="index">
-                    <img class="recommend_banner_swiper_slide_img" :src="item.img" alt="" referrerpolicy="no-referrer">
-                </SwiperSlide>
+            <div class="recommend_bannar_content">
+                <swiper class="recommend_banner_swiper" :modules=swiper_modules :pagination="{ clickable: true }"
+                    :autoplay="{ delay: 3000, disableOnInteraction: false }" :loop="true" :spaceBetween="50"
+                    :navigation="navigation" :slidesPerView="1">
+                    <SwiperSlide :zoom="true" class="recommend_banner_swiper_slide" v-for="(item, index) in feed_banners"
+                        :key="index">
+                        <img class="recommend_banner_swiper_slide_img" :src="item.img" alt="" referrerpolicy="no-referrer">
+                    </SwiperSlide>
 
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-scrollbar"></div>
-            </swiper>
-            <!-- <swiper class="recommend_banner_swiper" :="banner_swiper">
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-scrollbar"></div>
+                </swiper>
+                <!-- <swiper class="recommend_banner_swiper" :="banner_swiper">
                 <SwiperSlide :zoom="true" class="recommend_banner_swiper_slide" v-for="( item, index ) in  feed_banners "
                     :key="index">
                     <img class="recommend_banner_swiper_slide_img" :src="item.img" alt="" referrerpolicy="no-referrer">
@@ -23,19 +24,21 @@
 
                 </div>
             </swiper> -->
-            <div class="recommend_banner_footer">
-                <div class="recommend_banner_title">
-                </div>
-                <div class="recommend_banner_pagination">
+                <div class="recommend_banner_footer">
+                    <div class="recommend_banner_title">
+                    </div>
+                    <div class="recommend_banner_pagination">
 
-                </div>
-                <div class="recommend_banner_switch">
+                    </div>
+                    <div class="recommend_banner_switch">
 
+                    </div>
                 </div>
             </div>
+
         </div>
         <div class="recommend_card" v-for="( item, index ) in  feed_recommend_cards " :key="index">
-            <div class="card_img">
+            <div class="recommend_card_upper">
                 <a href="https://www.baidu.com">
                     <img :src="item.img" alt="" class="card_video_bgimg" referrerpolicy="no-referrer">
                     <div class="card_video_info">
@@ -146,23 +149,44 @@ for (let index = 0; index < 100; index++) {
     /* background-color: aqua; */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 265px;
+    /* grid-template-rows: 265px; */
     gap: 20px;
-    padding: 10px 140px;
+    margin: 0 auto;
+    padding: 10px auto;
     flex-shrink: 0;
     color: black;
+    max-width: calc(1980px + 2 * var(20px));
 }
 
+@media (min-width: 1560px) {
+    .feed {
+        grid-template-columns: repeat(5, 1fr);
+        margin: 0 140px;
+    }
+}
+
+@media (max-width: 1559.9px) {
+    .feed {
+        width: 1180px;
+        grid-template-columns: repeat(4, 1fr);
+        /* margin: 0 auto; */
+    }
+}
 
 /* #region 推荐banner */
 .recommend_banner {
     grid-column: 1 / 3;
     grid-row: 1 / 3;
     background-color: red;
+}
+
+.recommend_bannar_content {
+    width: 100%;
     border-radius: 6px;
-    height: 475px;
     overflow: hidden;
     object-fit: cover;
+    display: block;
+    background-color: blue;
 }
 
 .recommend_banner_swiper {
@@ -195,28 +219,24 @@ for (let index = 0; index < 100; index++) {
 
 .recommend_card {
     background-color: white;
-    height: 265px;
+    /* height: 265px; */
+}
+
+.recommend_card_upper {
     border-radius: 6px;
     overflow: hidden;
 }
 
-.recommend_card img {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-}
-
-.card_img {
-    height: 190px;
-}
-
-.card_img a {
+.recommend_card_upper a {
     position: relative;
 }
 
-/* .card_video_bgimg {
-    position: absolute;
-} */
+.recommend_card_upper a img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
 
 /* #region播放量，评论数，时长 */
 .card_video_info {
@@ -225,7 +245,7 @@ for (let index = 0; index < 100; index++) {
     height: 30px;
     left: 0;
     right: 0;
-    bottom: 3px;
+    bottom: 0px;
     display: flex;
     justify-content: space-between;
     padding-left: 5px;
@@ -233,6 +253,7 @@ for (let index = 0; index < 100; index++) {
     font-size: 13px;
     align-items: end;
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .8) 100%);
+    /* border-radius: 6px; */
 }
 
 .card_video_info_left {
@@ -272,6 +293,8 @@ for (let index = 0; index < 100; index++) {
     font-weight: bold;
     height: 44px;
     line-height: 22px;
+    max-lines: 2;
+    overflow-wrap: break-word;
 }
 
 .card_summary .title:hover {
